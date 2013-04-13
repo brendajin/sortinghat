@@ -1,0 +1,65 @@
+<head>
+  <title>sorting-hat</title>
+  <style link="http://twitter.github.io/bootstrap/assets/css/bootstrap.css"/>
+</head>
+
+<body>
+  {{> hello}}
+</body>
+
+<template name="hello">
+  <h1>Welcome to Sorting Hat!</h1>
+  {{greeting}}
+  {{> eventboard}}
+  {{> newEvent}}
+</template>
+
+<template name="eventboard">
+    <h3>Select your event</h3>
+  <div class="eventboard">
+    {{#each events}}
+      <a href="#{{name}}" role="button" class="btn" data-toggle="modal">{{> event}}</a>
+    {{/each}}
+  </div>
+</template>
+
+<template name="event">
+  <div class="event">
+    <span class="name">{{name}}</span>
+    <span class="score">{{score}}</span>
+  </div>
+</template>
+
+<template name="newEvent">
+    <h3>Or</h3>
+    <a href="#newEventModal" role="button" class="btn" data-toggle="modal">Create a New Event</a>
+
+       <div id="newEventModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">New Event</h3>
+      </div>
+      <div class="modal-body">
+        {{> newEventForm}}
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary">Make Teams!</button>
+      </div>
+    </div>
+</template>
+
+<template name="newEventForm">
+    <form>
+        <li><input type="text" placeholder="Event Name"></input></li>
+        <li><input type="number" placeholder="Number of"></input></li>
+        <li class="dropdown open">
+            <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">select one<b class="caret"></b></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                <li>people per group</li>
+                <li>groups</li>
+            </ul>
+        </li>
+        <li>Sort in <input type="number" placeholder="Number of Minutes"></input></li>
+    </form>
+</template>
